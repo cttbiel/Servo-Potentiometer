@@ -18,8 +18,8 @@ static void MX_TIM3_Init(void);
 static void MX_ADC1_Init(void);
 
 void setServoAngle(uint16_t angle) {
-    uint16_t pwmValue = (1000 + (angle * 1000) / 180);
-    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, pwmValue);
+	uint16_t pwmValue = (1000 +(angle*1000)/270);
+	__HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1,pwmValue);
 }
 
 uint32_t readPotentiometer(void){
@@ -49,7 +49,7 @@ int main(void)
   while (1)
   {
 	  adcValue = readPotentiometer();
-	  angle = (adcValue * 180)/4095;
+	  angle = (adcValue * 270) / 4095;
 	  setServoAngle(angle);
 	  HAL_Delay(50);
   }
